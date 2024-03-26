@@ -387,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 125893649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117, y: 0, z: 8.8}
+  m_LocalPosition: {x: 117, y: -0, z: 7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1066,7 +1066,7 @@ Transform:
   m_GameObject: {fileID: 1004744333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.8, y: -23.4, z: 8.8}
+  m_LocalPosition: {x: 31.8, y: -23.4, z: 7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1240,7 +1240,7 @@ Transform:
   m_GameObject: {fileID: 1102898712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -93.6, y: -0, z: 12.2}
+  m_LocalPosition: {x: -93.6, y: -0, z: 5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2484,7 +2484,7 @@ Transform:
   m_GameObject: {fileID: 1420390006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.9, y: -14.1, z: 34.4}
+  m_LocalPosition: {x: 38.9, y: -15.7, z: 34.4}
   m_LocalScale: {x: 1.9118, y: 1, z: 1.7695}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2577,7 +2577,7 @@ MonoBehaviour:
   underwaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
-  floatingPower: 400
+  floatingPower: 200
   waterHeight: 1.12
 --- !u!4 &1436449167 stripped
 Transform:
@@ -3006,7 +3006,7 @@ Transform:
   m_GameObject: {fileID: 1506983604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.8, y: 21.9, z: 8.8}
+  m_LocalPosition: {x: 31.8, y: 21.9, z: 7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3162,8 +3162,8 @@ MonoBehaviour:
   underwaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
-  floatingPower: 15
-  waterHeight: 0
+  floatingPower: 70
+  waterHeight: 1.12
 --- !u!4 &1605364532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1068893986151228778, guid: a08d0b8868e129947a31b728af76e6df,
