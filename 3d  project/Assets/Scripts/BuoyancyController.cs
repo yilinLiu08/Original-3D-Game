@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BuoyancyController : MonoBehaviour
 {
+    public Transform[] floaters;
+
     public float underWaterDrag = 3f;
     public float underwaterAngularDrag = 1f;
 
@@ -15,6 +17,8 @@ public class BuoyancyController : MonoBehaviour
 
     Rigidbody objectRigidBody;
 
+    int floatersUnderwater;
+
     bool underwater;
 
     // Start is called before the first frame update
@@ -24,21 +28,26 @@ public class BuoyancyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        float difference = transform.position.y - waterHeight;
-
-        if (difference < 0)
+        floatersUnderwater = 0;
+        for (int i = 0; i < floaters.Length; i++)
         {
-            objectRigidBody.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(difference), transform.position, ForceMode.Force);
+            float difference = floaters[i].position.y - waterHeight;
 
-            if(!underwater)
+            if (difference < 0)
             {
-                underwater = true;
-                SwitchState(true);
+                objectRigidBody.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(difference), floaters[i].position, ForceMode.Force);
+                floatersUnderwater += 1;
+                if (!underwater)
+                {
+                    underwater = true;
+                    SwitchState(true);
+                }
             }
         }
-        else if(underwater)
+
+        if(underwater && floatersUnderwater == 0)
         {
             underwater = false;
             SwitchState(false);
