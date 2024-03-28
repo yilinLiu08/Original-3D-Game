@@ -15,15 +15,17 @@ public class SitController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("MainCamera"))
+        Debug.Log(other.gameObject.tag);
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("player");
             intText.SetActive(true);
             interactable = true;
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MainCamera"))
+        if (other.CompareTag("Player"))
         {
             intText.SetActive(false);
             interactable = false;
@@ -45,10 +47,10 @@ public class SitController : MonoBehaviour
         }
         if (sitting == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 playerSitting.SetActive(false);
-                standText.SetActive(false);
+                standText.SetActive(true);
                 playerStanding.SetActive(true);
                 sitting = false;
             }
