@@ -5,6 +5,11 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Inventory")]
+    public GameObject mybag;
+    bool isOpen;
+    
+    
     [Header("Movement")]
     public float moveSpeed;
 
@@ -50,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        OpenMyBag();
 
         // handle drag
         if (grounded)
@@ -119,5 +125,13 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    void OpenMyBag()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            isOpen = !isOpen;
+            mybag.SetActive(!isOpen);
+        }
     }
 }
