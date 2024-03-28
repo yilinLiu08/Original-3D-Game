@@ -22,10 +22,12 @@ public class itemOnWorld : MonoBehaviour
         {
             PlayerInventory.itemList.Add(thisItem);
             InventoryManager.CreateNewItem(thisItem);
+            print("create new item");
         }
         else
         {
             thisItem.itemHeld += 1;
+            print("+= 1");
         }
     }
 }

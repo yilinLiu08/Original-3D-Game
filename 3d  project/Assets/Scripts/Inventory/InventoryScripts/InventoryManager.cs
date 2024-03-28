@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (instance != null)
             Destroy(this);
         instance = this;
     }
@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
         newItem.slotItem = item;
         newItem.slotImage.sprite = item.itemImage;
         newItem.slotNum.text = item.itemHeld.ToString();
+        print(newItem.slotImage.sprite.name);
 
 
     }

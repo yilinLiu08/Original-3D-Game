@@ -10,7 +10,7 @@ public class starvation : MonoBehaviour
     void Start()
     {
        
-        decreaseRate = 100f / (4f * 60f);
+        decreaseRate = 100f / (2f * 60f);
     }
 
     void Update()
@@ -28,12 +28,12 @@ public class starvation : MonoBehaviour
         hunger = Mathf.Max(hunger, 0);
 
         
-       // Debug.Log("Hunger: " + hunger);
+        Debug.Log("Hunger: " + hunger);
 
        
         if (hunger <= 0)
         {
-            Debug.Log("You are dead");
+            //Debug.Log("You are dead");
             
         }
     }
