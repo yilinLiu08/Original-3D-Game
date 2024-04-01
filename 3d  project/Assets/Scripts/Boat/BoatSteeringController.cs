@@ -10,14 +10,30 @@ public class BoatSteeringController : MonoBehaviour
 
     [Header("RigidBody")]
     public Rigidbody boatRB;
+    public GameObject playerToggle;
+
+    [SerializeField] BoatSteeringController boatControllerCode;
 
     private void Start()
     {
+        playerToggle = GetComponentInParent<GameObject>();
         boatRB = GetComponent<Rigidbody>();
+        boatControllerCode = GetComponent<BoatSteeringController>();
     }
 
     private void Update()
     {
+        if (playerToggle == null)
+        {
+            Debug.Log("toggle on");
+            boatControllerCode.enabled = true;
+        }
+        if (playerToggle != null)
+        {
+            Debug.Log("toggle off");
+            boatControllerCode.enabled = false;
+        }
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 

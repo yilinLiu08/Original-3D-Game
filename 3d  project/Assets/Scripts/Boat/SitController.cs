@@ -15,10 +15,9 @@ public class SitController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.CompareTag("Player"))
         {
-            Debug.Log("player");
+            //Debug.Log("player");
             intText.SetActive(true);
             interactable = true;
         }

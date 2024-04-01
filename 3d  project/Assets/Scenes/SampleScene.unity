@@ -4395,14 +4395,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436449155}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ec40412a3b316144b9c908ab23e4e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 8000
   accellerateSpeed: 8000
-  boatRB: {fileID: 0}
+  boatRB: {fileID: 1436449159}
+  playerToggle: {fileID: 36718513}
+  boatControllerCode: {fileID: 1436449179}
 --- !u!43 &1448095006
 Mesh:
   m_ObjectHideFlags: 0
