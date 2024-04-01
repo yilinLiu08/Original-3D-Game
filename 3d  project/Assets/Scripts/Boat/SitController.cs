@@ -13,6 +13,15 @@ public class SitController : MonoBehaviour
     public bool interactable;
     public bool sitting;
 
+
+    [SerializeField] BoatSteeringController boatControllerCode;
+
+    private void Start()
+    {
+        boatControllerCode = GetComponent<BoatSteeringController>();
+        boatControllerCode.enabled = false;
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -42,6 +51,8 @@ public class SitController : MonoBehaviour
                 sitting = true;
                 playerStanding.SetActive(false);
                 interactable = false;
+                Debug.Log("toggle on");
+                boatControllerCode.enabled = true;
             }
         }
         if (sitting == true)
@@ -52,6 +63,8 @@ public class SitController : MonoBehaviour
                 standText.SetActive(true);
                 playerStanding.SetActive(true);
                 sitting = false;
+                Debug.Log("toggle off");
+                boatControllerCode.enabled = false;
             }
         }
     }
