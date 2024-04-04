@@ -7,6 +7,7 @@ public class RotationPurple : MonoBehaviour
     public float rotationAmount = 90f;
     public AudioSource RotationSound;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PurpleBall")
