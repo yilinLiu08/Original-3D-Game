@@ -24,5 +24,4 @@ public class BoatSteeringController : MonoBehaviour
         boatRB.AddTorque(0f, h * turnSpeed * Time.deltaTime, 0f);
         boatRB.AddForce(transform.forward * v * accellerateSpeed * Time.deltaTime);
     }
-
 }
