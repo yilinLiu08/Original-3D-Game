@@ -18,7 +18,6 @@ public class SitController : MonoBehaviour
 
     private void Start()
     {
-        boatControllerCode = GetComponent<BoatSteeringController>();
         boatControllerCode.enabled = false;
     }
 

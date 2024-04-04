@@ -13,7 +13,7 @@ public class BoatSteeringController : MonoBehaviour
 
     private void Start()
     {
-        boatRB = GetComponent<Rigidbody>();
+        
     }
 
     private void Update()
