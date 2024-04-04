@@ -28,7 +28,7 @@ public class starvation : MonoBehaviour
         hunger = Mathf.Max(hunger, 0);
 
         
-        //Debug.Log("Hunger: " + hunger);
+        
 
        
         if (hunger <= 0)
