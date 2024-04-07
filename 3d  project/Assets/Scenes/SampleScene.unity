@@ -6517,6 +6517,7 @@ MonoBehaviour:
   objectsToThrow:
   - {fileID: 1370259741160730964, guid: 4961a99d6d78b714fb7078f7723fcf7c, type: 3}
   - {fileID: 1370259741160730964, guid: 7c4a9fd15fc48fa41826082c38bc00bf, type: 3}
+  - {fileID: 1370259741160730964, guid: edfea53c5f5f514489a5ca896f24ed1b, type: 3}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 113
