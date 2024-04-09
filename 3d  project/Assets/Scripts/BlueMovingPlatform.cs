@@ -16,10 +16,11 @@ public class BlueMovingPlatform : MonoBehaviour
         originalPosition = platform.transform.position;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "BlueBall")
+        if (collision.collider.tag == "BlueBall")
         {
+            
             StartCoroutine(MovePlatform());
         }
     }

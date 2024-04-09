@@ -1,62 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ChurchBoss : MonoBehaviour
 {
-    public GameObject[] gameObjects; 
-    public Material blueMaterial; 
-    public Material purpleMaterial; 
+    
+    public MaterialChange[] objectsToChange;
 
     void Start()
     {
         
-        InvokeRepeating("ChangeColors", 0, 10f);
+        StartCoroutine(ChangeMaterialsRandomly());
     }
 
-    void ChangeColors()
+    IEnumerator<WaitForSeconds> ChangeMaterialsRandomly()
     {
-        
-        int uniqueIndex = Random.Range(0, gameObjects.Length);
-
-       
-        Material commonMaterial = (Random.Range(0, 2) == 0) ? blueMaterial : purpleMaterial;
-
-        
-        Material uniqueMaterial = commonMaterial == blueMaterial ? purpleMaterial : blueMaterial;
-
-        for (int i = 0; i < gameObjects.Length; i++)
+        while (true)
         {
             
-            if (i == uniqueIndex)
-            {
-                gameObjects[i].GetComponent<Renderer>().material = uniqueMaterial;
-            }
-            else 
-            {
-                gameObjects[i].GetComponent<Renderer>().material = commonMaterial;
-            }
-        }
-    }
+            yield return new WaitForSeconds(10);
 
-    void OnTriggerEnter(Collider other)
-    {
-        
-        Debug.Log("Triggered" );
-        GameObject collider = other.gameObject;
-
-        
-        if (collider.tag == "BlueBall" || collider.tag == "PurpleBall")
-        {
-            print("yes");
             
-            Material desiredMaterial = collider.tag == "BlueBall" ? blueMaterial : purpleMaterial;
-
-            foreach (var obj in gameObjects)
+            List<int> indexes = new List<int> { 0, 1, 2, 3 };
+            int purpleIndex = Random.Range(0, indexes.Count);
+            for (int i = 0; i < indexes.Count; i++)
             {
-                
-                if (obj.GetComponent<Renderer>().material != desiredMaterial)
+                if (i == purpleIndex)
                 {
-                    obj.GetComponent<Renderer>().material = desiredMaterial;
-                    break; 
+                    
+                    objectsToChange[i].GetComponent<Renderer>().material = objectsToChange[i].PurpleMaterial;
+                }
+                else
+                {
+                    
+                    objectsToChange[i].GetComponent<Renderer>().material = objectsToChange[i].BlueMaterial;
                 }
             }
         }
