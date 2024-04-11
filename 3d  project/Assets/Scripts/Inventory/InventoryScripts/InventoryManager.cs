@@ -19,6 +19,19 @@ public class InventoryManager : MonoBehaviour
             Destroy(this);
         instance = this;
     }
+
+    private void OnEnable()
+    {
+        RefreshItem();
+        instance.itemInformation.text = "";
+    }
+
+    public static void UpdateItemInfo(string itemDescriptation)
+    {
+        instance.itemInformation.text = itemDescriptation;
+    }
+
+
     public static void CreateNewItem(Item item)
     {
         Slot newItem = Instantiate(instance.slotPrefab, instance.slotGrid.transform.position, Quaternion.identity);
@@ -30,4 +43,18 @@ public class InventoryManager : MonoBehaviour
 
 
     }
+
+    public static void RefreshItem()
+    {
+        for(int i = 0;i< instance.slotGrid.transform.childCount;i++)
+        {
+            if (instance.slotGrid.transform.childCount == 0)
+                break;
+            Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+        }
+        for(int i = 0; i < instance.myBag.itemList.Count; i++)
+        {
+            CreateNewItem(instance.myBag.itemList[i]);
+        }
+    }   
 }

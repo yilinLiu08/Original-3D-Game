@@ -21,7 +21,7 @@ public class itemOnWorld : MonoBehaviour
         if (!PlayerInventory.itemList.Contains(thisItem)) 
         {
             PlayerInventory.itemList.Add(thisItem);
-            InventoryManager.CreateNewItem(thisItem);
+            //InventoryManager.CreateNewItem(thisItem);
             print("create new item");
         }
         else
@@ -29,5 +29,6 @@ public class itemOnWorld : MonoBehaviour
             thisItem.itemHeld += 1;
             print("+= 1");
         }
+        InventoryManager.RefreshItem();
     }
 }

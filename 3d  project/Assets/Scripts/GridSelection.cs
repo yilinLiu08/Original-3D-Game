@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class GridSelection : MonoBehaviour
 {
-    public GridLayoutGroup gridLayoutGroup; 
-    private int selectedIndex = -1; 
-    public Color selectedColor = Color.red; 
-    private Color defaultColor = Color.white; 
+    public GridLayoutGroup gridLayoutGroup;
+    public int selectedIndex = -1;
+    public Color selectedColor = Color.red;
+    private Color defaultColor = Color.white;
+
+    
+    public InventoryManager inventoryManager;
 
     void Start()
     {
-        
         foreach (Transform child in gridLayoutGroup.transform)
         {
             if (child.GetComponent<Image>() != null)
@@ -38,13 +42,13 @@ public class GridSelection : MonoBehaviour
             selectedIndex = Mathf.Clamp(selectedIndex, 0, gridLayoutGroup.transform.childCount - 1);
 
             HighlightSelectedItem();
-            Debug.Log($"Selected Grid Item Index: {selectedIndex}");
+            
+            UpdateItemInformation();
         }
     }
 
     void HighlightSelectedItem()
     {
-        
         foreach (Transform child in gridLayoutGroup.transform)
         {
             if (child.GetComponent<Image>() != null)
@@ -53,11 +57,20 @@ public class GridSelection : MonoBehaviour
             }
         }
 
-        
         Transform selectedItem = gridLayoutGroup.transform.GetChild(selectedIndex);
         if (selectedItem.GetComponent<Image>() != null)
         {
             selectedItem.GetComponent<Image>().color = selectedColor;
+        }
+    }
+
+    
+    void UpdateItemInformation()
+    {
+        if (inventoryManager != null && selectedIndex < inventoryManager.myBag.itemList.Count)
+        {
+            Item selectedItem = inventoryManager.myBag.itemList[selectedIndex];
+            InventoryManager.UpdateItemInfo(selectedItem.itemInfor);
         }
     }
 }
