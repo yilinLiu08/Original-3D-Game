@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -36,12 +37,18 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    [Header("Health")]
+    public int maxHealth = 100;
+    public int health;
+    public Image healthBar;
+
     Vector3 moveDirection;
 
     Rigidbody rb;
 
     private void Start()
     {
+        health = maxHealth;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -134,4 +141,13 @@ public class PlayerMovement : MonoBehaviour
             mybag.SetActive(!isOpen);
         }
     }
+
+    #region "Health"
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        Debug.Log(health);
+        healthBar.fillAmount = health / 100;
+    }
+    #endregion
 }

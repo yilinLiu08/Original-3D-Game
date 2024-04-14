@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BlueBall
   - PurpleBall
+  - Monster1
   layers:
   - Default
   - TransparentFX
