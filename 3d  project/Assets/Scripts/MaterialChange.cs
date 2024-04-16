@@ -15,8 +15,7 @@ public class MaterialChange : MonoBehaviour
         {
             renderer.material = BlueMaterial;
         }
-        
-        else if (collision.gameObject.tag == "PurpleBall" && renderer != null && PurpleMaterial != null)
+        if (collision.gameObject.tag == "PurpleBall" && renderer != null && PurpleMaterial != null)
         {
             renderer.material = PurpleMaterial;
         }
