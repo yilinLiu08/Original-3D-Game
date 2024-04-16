@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     {
         health -= damage;
         Debug.Log(health);
-        healthBar.fillAmount = health / 100;
+        healthBar.fillAmount = (float) health / 100f;
     }
     #endregion
 }

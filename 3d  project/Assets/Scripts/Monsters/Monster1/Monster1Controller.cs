@@ -63,8 +63,8 @@ public class Monster1Controller : MonoBehaviour
     IEnumerator Move()
     {
         #region"movement"
-        int rotationTime = Random.Range(1, 3);
-        int rotateWait = Random.Range(1, 3);
+        int rotationTime = Random.Range(1, 2);
+        int rotateWait = Random.Range(1, 2);
         int rotateDirection = Random.Range(1, 2);
         int walkWait = Random.Range(1, 3);
         int walkTime = Random.Range(1, 3);
@@ -110,6 +110,11 @@ public class Monster1Controller : MonoBehaviour
         {
             TakeDamage(10);
         }
+
+        if (collision.gameObject.tag == "PurpleBall")
+        {
+            TakeDamage(20);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -117,8 +122,9 @@ public class Monster1Controller : MonoBehaviour
         health -= damage;
         if (health < 0)
         {
+            StopCoroutine(Move());
             animator.SetTrigger("die");
+            Destroy(gameObject, 3f);
         }
     }
-
 }
