@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3558609100511444852}
   m_Layer: 8
   m_Name: yellowBall 1
-  m_TagString: PurpleBall
+  m_TagString: YellowBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

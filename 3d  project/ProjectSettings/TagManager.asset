@@ -8,6 +8,9 @@ TagManager:
   - PurpleBall
   - Monster1
   - Door
+  - TrackingObject
+  - Actors
+  - YellowBall
   layers:
   - Default
   - TransparentFX
