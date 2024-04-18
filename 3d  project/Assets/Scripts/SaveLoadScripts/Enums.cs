@@ -1,4 +1,4 @@
-/*public enum PersistentType
+public enum PersistentType
 {
     ReadWrite, DoNottentType
 
@@ -14,4 +14,4 @@ public enum SceneType
    Location,Menu
 
 }
-*/
+

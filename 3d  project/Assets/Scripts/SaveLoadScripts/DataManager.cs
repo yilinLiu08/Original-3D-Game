@@ -1,14 +1,17 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public VoidEventSD saveDataEvent;
+    public VoidEventSO saveDataEvent;
 
     private List<ISaveable> saveableList = new List<ISaveable>();
+
+    private Data saveData;
 
     private void Awake()
     {
@@ -17,7 +20,27 @@ public class DataManager : MonoBehaviour
         else
             Destroy(this.gameObject);
 
+        saveData = new Data();
+
     }
+    private void OnEnable()
+    {
+        saveDataEvent.OnEventRaised += Save;
+    }
+
+    private void OnDisable()
+    {
+        saveDataEvent.OnEventRaised -= Save;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)  // 注意 'Keyboard' 和 'lKey' 的正确拼写
+        {
+            Load();
+        }
+    }
+
 
     public void RegisterSaveData(ISaveable saveable)
     {
@@ -33,12 +56,23 @@ public class DataManager : MonoBehaviour
 
     public void Save()
     {
+        foreach(var saveable in saveableList)
+        {
+            saveable.GetSaveData(saveData);
+        }
 
+        foreach(var item in saveData.characterPosDict)
+        {
+            Debug.Log(item.Key + "   " + item.Value);
+        }
     }
 
     public void Load()
     {
+        foreach (var saveable in saveableList)
+        {
+            saveable.LoadData(saveData);
+        }
 
     }
 }
-*/

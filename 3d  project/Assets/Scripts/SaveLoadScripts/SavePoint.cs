@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SavePoint : MonoBehaviour
+public class SavePoint : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    public VoidEventSO saveDataEvent;
+
+    
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player")) 
+        {
+            TriggerAction();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerAction()
     {
-        
+        saveDataEvent.RaiseEvent();
     }
 }

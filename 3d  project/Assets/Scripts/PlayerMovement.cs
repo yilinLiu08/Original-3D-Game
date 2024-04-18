@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
-public class PlayerMovement : MonoBehaviour/*,ISaveable*/
+public class PlayerMovement : MonoBehaviour, ISaveable
 {
     [Header("Inventory")]
     public GameObject mybag;
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour/*,ISaveable*/
         readyToJump = true;
     }
 
-    /*private void OnEnable()
+    private void OnEnable()
     {
         ISaveable saveable = this;
         saveable.RegisterSaveData();
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour/*,ISaveable*/
     {
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
-    }*/
+    }
 
     private void Update()
     {
@@ -154,7 +155,7 @@ public class PlayerMovement : MonoBehaviour/*,ISaveable*/
         }
     }
 
-   /* public DataDefinition GetDataID()
+    public DataDefinition GetDataID()
     {
         return GetComponent<DataDefinition>();
     }
@@ -176,7 +177,7 @@ public class PlayerMovement : MonoBehaviour/*,ISaveable*/
         {
             transform.position = data.characterPosDict[GetDataID().ID];
         }
-    }*/
+    }
 
     #region "Health"
     public void TakeDamage(int damage)
