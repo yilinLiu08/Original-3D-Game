@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using Unity.VisualScripting.Antlr3.Runtime;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -51,8 +53,16 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
-		// cinemachine
-		private float _cinemachineTargetPitch;
+        [Header("Health")]
+        public int maxHealth = 100;
+        public int health;
+        public Image healthBar;
+
+        [Header("Inventory")]
+        public GameObject mybag;
+        bool isOpen;
+        // cinemachine
+        private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -63,10 +73,11 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+        private float lastGroundUpdateTime = 0.0f;
 
-	
+
 #if ENABLE_INPUT_SYSTEM
-		private PlayerInput _playerInput;
+        private PlayerInput _playerInput;
 #endif
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
@@ -88,8 +99,8 @@ namespace StarterAssets
 
 		private void Awake()
 		{
-			// get a reference to our main camera
-			if (_mainCamera == null)
+            health = maxHealth;
+            if (_mainCamera == null)
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
@@ -97,7 +108,9 @@ namespace StarterAssets
 
 		private void Start()
 		{
-			_controller = GetComponent<CharacterController>();
+            health = maxHealth;
+
+            _controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
@@ -115,19 +128,39 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-		}
+        }
 
 		private void LateUpdate()
 		{
 			CameraRotation();
 		}
+        void OpenMyBag()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                isOpen = !isOpen;
+                mybag.SetActive(!isOpen);
+            }
+        }
 
-		private void GroundedCheck()
+        #region "Health"
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            Debug.Log(health);
+            healthBar.fillAmount = (float)health / 100f;
+        }
+        #endregion
+        private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-		}
+            if (Time.time - lastGroundUpdateTime > _fallTimeoutDelta)
+            {
+                Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+                lastGroundUpdateTime = Time.time;
+            }
+        }
 
 		private void CameraRotation()
 		{

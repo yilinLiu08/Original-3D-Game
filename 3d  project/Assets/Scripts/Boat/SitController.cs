@@ -13,6 +13,8 @@ public class SitController : MonoBehaviour
     public bool interactable;
     public bool sitting;
 
+    public bool canDock;
+    public Vector3 playerRespawnPoint;
 
     [SerializeField] BoatSteeringController boatControllerCode;
 
@@ -56,14 +58,18 @@ public class SitController : MonoBehaviour
         }
         if (sitting == true)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (canDock)
             {
-                playerSitting.SetActive(false);
-                standText.SetActive(true);
-                playerStanding.SetActive(true);
-                sitting = false;
-                Debug.Log("toggle off");
-                boatControllerCode.enabled = false;
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    playerSitting.SetActive(false);
+                    standText.SetActive(true);
+                    playerStanding.SetActive(true);
+                    sitting = false;
+                    playerStanding.transform.position = playerRespawnPoint;
+                    boatControllerCode.enabled = false;
+                }
+
             }
         }
     }

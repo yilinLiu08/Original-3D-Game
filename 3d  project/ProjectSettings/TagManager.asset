@@ -11,6 +11,8 @@ TagManager:
   - TrackingObject
   - Actors
   - YellowBall
+  - CinemachineTarget
+  - Boat
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - whatIsPlayer
   - whatIsBoat
   - Elements
-  - 
-  - 
+  - Monster
+  - Lighting
   - 
   - 
   - 

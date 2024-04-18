@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class Monster1Controller : MonoBehaviour
     public int maxHealth = 50;
     public int health;
     public int damage;
-    [SerializeField] PlayerMovement playerHealth;
+    [SerializeField] FirstPersonController playerHealth;
 
     Rigidbody rb;
     Animator animator;

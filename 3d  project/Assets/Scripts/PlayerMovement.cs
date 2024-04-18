@@ -66,9 +66,15 @@ public class PlayerMovement : MonoBehaviour
 
         // handle drag
         if (grounded)
+        {
             rb.drag = groundDrag;
+        }
         else
+        {
             rb.drag = 0;
+        }
+
+        Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - playerHeight * 0.5f + 0.3f), Color.red);
     }
 
     private void FixedUpdate()
@@ -132,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+        Debug.Log("ready to jump");
     }
     void OpenMyBag()
     {
