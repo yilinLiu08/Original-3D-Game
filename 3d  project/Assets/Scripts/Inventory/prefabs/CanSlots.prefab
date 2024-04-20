@@ -146,9 +146,10 @@ GameObject:
   - component: {fileID: 2907110906894263161}
   - component: {fileID: 6574831059586411647}
   - component: {fileID: 7918650352889677604}
+  - component: {fileID: 5921113860944817855}
   m_Layer: 5
-  m_Name: Slots
-  m_TagString: Untagged
+  m_Name: CanSlots
+  m_TagString: Can
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,3 +227,16 @@ MonoBehaviour:
   slotItem: {fileID: 11400000, guid: d5e890d1fcf38e14bb93f21f93b9bf1a, type: 2}
   slotImage: {fileID: 6574831059586411647}
   slotNum: {fileID: 3374014572885715696}
+--- !u!114 &5921113860944817855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788248616044466010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd210aa51849eb549a82fe029e02a1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HungerController: {fileID: 0}

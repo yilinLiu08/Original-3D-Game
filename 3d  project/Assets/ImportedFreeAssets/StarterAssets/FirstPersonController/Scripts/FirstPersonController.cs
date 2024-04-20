@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting.Antlr3.Runtime;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine.Events;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -11,8 +15,8 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
 #endif
-	public class FirstPersonController : MonoBehaviour
-	{
+	public class FirstPersonController : MonoBehaviour, ISaveable
+    {
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
@@ -128,6 +132,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			OpenMyBag();
         }
 
 		private void LateUpdate()
@@ -141,6 +146,18 @@ namespace StarterAssets
                 isOpen = !isOpen;
                 mybag.SetActive(!isOpen);
             }
+        }
+
+        private void OnEnable()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveData();
+        }
+
+        private void OnDisable()
+        {
+            ISaveable saveable = this;
+            saveable.UnRegisterSaveData();
         }
 
         #region "Health"
@@ -297,5 +314,33 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+        public DataDefinition GetDataID()
+        {
+            return GetComponent<DataDefinition>();
+        }
+
+        public void GetSaveData(Data data)
+        {
+            if (data.characterPosDict.ContainsKey(GetDataID().ID))
+            {
+                data.characterPosDict[GetDataID().ID] = transform.position;
+            }
+            else
+            {
+                data.characterPosDict.Add(GetDataID().ID, transform.position);
+            }
+        }
+        public void LoadData(Data data)
+        {
+            if (data.characterPosDict.ContainsKey(GetDataID().ID))
+            {
+                transform.position = data.characterPosDict[GetDataID().ID];
+            }
+        }
+    }
+
+   
+
+   
 }

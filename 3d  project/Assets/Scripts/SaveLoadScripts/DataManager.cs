@@ -35,7 +35,7 @@ public class DataManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.lKey.wasPressedThisFrame)  // 注意 'Keyboard' 和 'lKey' 的正确拼写
+        if (Keyboard.current.lKey.wasPressedThisFrame) 
         {
             Load();
         }

@@ -16,12 +16,12 @@ public class itemOnWorld : MonoBehaviour
         }
     }
 
-    public void AddNewItem() 
+    public void AddNewItem()
     {
-        if (!PlayerInventory.itemList.Contains(thisItem)) 
+        if (!PlayerInventory.itemList.Contains(thisItem))
         {
+            thisItem.itemHeld = 1;  // 设置数量为1，而不是从0开始
             PlayerInventory.itemList.Add(thisItem);
-            //InventoryManager.CreateNewItem(thisItem);
             print("create new item");
         }
         else
@@ -31,4 +31,5 @@ public class itemOnWorld : MonoBehaviour
         }
         InventoryManager.RefreshItem();
     }
+
 }

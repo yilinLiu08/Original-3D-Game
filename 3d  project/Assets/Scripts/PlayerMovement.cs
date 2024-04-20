@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour, ISaveable
     }
     void OpenMyBag()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             isOpen = !isOpen;
             mybag.SetActive(!isOpen);
