@@ -1,4 +1,4 @@
-/* using UnityEngine;
+using UnityEngine;
 
 public class unlockYellow : MonoBehaviour
 {
@@ -6,7 +6,7 @@ public class unlockYellow : MonoBehaviour
     public ThrowingTutorial throwingTutorialScript;
 
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("Player"))
@@ -18,5 +18,5 @@ public class unlockYellow : MonoBehaviour
             Destroy(gameObject);
 
         }
-    }
-}*/
+    }*/
+}

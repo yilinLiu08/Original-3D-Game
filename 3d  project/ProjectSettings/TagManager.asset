@@ -13,6 +13,9 @@ TagManager:
   - YellowBall
   - CinemachineTarget
   - Boat
+  - BluePlatform
+  - PurplePlatform
+  - YellowPlatform
   layers:
   - Default
   - TransparentFX

@@ -10,8 +10,8 @@ public class DockController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boat"))
         {
-            sitController.canDock = true;
             sitController.playerRespawnPoint = playerSpawnPoint.position;
+            sitController.canDock = true;
         } 
     }
 

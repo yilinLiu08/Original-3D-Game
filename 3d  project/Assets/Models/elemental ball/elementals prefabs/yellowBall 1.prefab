@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3481268006716633124}
   - component: {fileID: 5603570025225527020}
   - component: {fileID: 8398741425575054262}
-  - component: {fileID: 3558609100511444852}
-  m_Layer: 8
+  - component: {fileID: 86816453945501182}
+  m_Layer: 0
   m_Name: yellowBall 1
-  m_TagString: YellowBall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,12 +130,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3558609100511444852
+--- !u!114 &86816453945501182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1370259741160730964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ae7e38643b2614cb94ba0124f1b279, type: 3}
+  m_Script: {fileID: 11500000, guid: 005d1aa5017d95c40b768683671125c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwingTutorialScript: {fileID: 0}
 --- !u!1001 &2854412085959157392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,22 +209,22 @@ PrefabInstance:
     - target: {fileID: 1521557768329535228, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2794424419023469036, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033484482692395797, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4965768374040144262, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5822823068730282034, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
@@ -233,27 +234,27 @@ PrefabInstance:
     - target: {fileID: 5822823068730282034, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6269557793259504148, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8115607720741049223, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8614543204778105511, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174602362777990571, guid: 32be1e2d221bda14ea8a7746aacd0ee2,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
