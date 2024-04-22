@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -65,10 +66,11 @@ public class SitController : MonoBehaviour
                 {
                     playerSitting.SetActive(false);
                     standText.SetActive(true);
+                    playerStanding.transform.position = playerRespawnPoint;
                     playerStanding.SetActive(true);
                     sitting = false;
-                    playerStanding.transform.position = playerRespawnPoint;
                     boatControllerCode.enabled = false;
+                    //Debug.Break();
                 }
 
             }
