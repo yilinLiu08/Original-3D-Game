@@ -56,7 +56,6 @@ public class SitController : MonoBehaviour
                 boatControllerCode.enabled = true;
             }
         }
-
         if (sitting == true)
         {
             if (canDock)

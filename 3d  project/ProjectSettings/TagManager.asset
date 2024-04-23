@@ -3,33 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - BlueBall
-  - PurpleBall
-  - Monster1
-  - Door
-  - TrackingObject
-  - Actors
-  - YellowBall
-  - CinemachineTarget
-  - Boat
-  - BluePlatform
-  - PurplePlatform
-  - YellowPlatform
-  - Can
-  - FirstAid
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - whatIsGround
+  - 
   - Water
   - UI
-  - whatIsPlayer
-  - whatIsBoat
-  - Elements
-  - Monster
-  - Lighting
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

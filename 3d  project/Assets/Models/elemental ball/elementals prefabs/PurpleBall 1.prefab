@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 3481268006716633124}
   - component: {fileID: 5603570025225527020}
   - component: {fileID: 8398741425575054262}
-  - component: {fileID: 508827278002514729}
   m_Layer: 0
   m_Name: PurpleBall 1
-  m_TagString: Untagged
+  m_TagString: PurpleBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,24 +129,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &508827278002514729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370259741160730964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d172634bc92be3c44aafd8d20c5c93cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwingTutorialScript: {fileID: 0}
 --- !u!1001 &5787208539619603910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,11 +155,6 @@ PrefabInstance:
     - target: {fileID: 82801264223279078, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 718437731822690950, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 812733433000832551, guid: 9b5717009b11ee94aa6720fd2f3565c4,
@@ -231,11 +212,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3106392139600088943, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3157595267030026378, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
       propertyPath: prewarm
@@ -244,11 +220,6 @@ PrefabInstance:
     - target: {fileID: 3157595267030026378, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188916930290238870, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4705715096032115023, guid: 9b5717009b11ee94aa6720fd2f3565c4,
@@ -266,25 +237,10 @@ PrefabInstance:
       propertyPath: prewarm
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5468564487118274158, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5488512800074345544, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
       propertyPath: m_Name
       value: Loading_free_purple
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488512800074345544, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6344511893336217084, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6626796376648807100, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
@@ -304,21 +260,6 @@ PrefabInstance:
     - target: {fileID: 6759537794812825301, guid: 9b5717009b11ee94aa6720fd2f3565c4,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185339035149437393, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7739663086886201053, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801819828296347645, guid: 9b5717009b11ee94aa6720fd2f3565c4,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8164007589243094787, guid: 9b5717009b11ee94aa6720fd2f3565c4,
