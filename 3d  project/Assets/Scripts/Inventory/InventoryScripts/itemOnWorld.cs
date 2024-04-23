@@ -1,35 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;  
 
-public class itemOnWorld : MonoBehaviour
+public class ItemOnWorld : MonoBehaviour
 {
     public Item thisItem;
-    public Inventory PlayerInventory; 
+    public Inventory playerInventory;
+    public GameObject fButtonUI;  
+    private bool isPlayerInRange = false;  
 
-    private void OnTriggerEnter(Collider other) 
+    void Start()
+    {
+        fButtonUI.SetActive(false);  
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            isPlayerInRange = true;  
+            fButtonUI.SetActive(true);  
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayerInRange = false;  
+            fButtonUI.SetActive(false);  
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))  
+        {
             AddNewItem();
-            Destroy(gameObject);
+            Destroy(gameObject);  
+            fButtonUI.SetActive(false);  
         }
     }
 
     public void AddNewItem()
     {
-        if (!PlayerInventory.itemList.Contains(thisItem))
+        if (!playerInventory.itemList.Contains(thisItem))
         {
-            thisItem.itemHeld = 1;  // 设置数量为1，而不是从0开始
-            PlayerInventory.itemList.Add(thisItem);
-            print("create new item");
+            thisItem.itemHeld = 1;
+            playerInventory.itemList.Add(thisItem);
+            Debug.Log("create new item");
         }
         else
         {
             thisItem.itemHeld += 1;
-            print("+= 1");
+            Debug.Log("+= 1");
         }
         InventoryManager.RefreshItem();
     }
-
 }
