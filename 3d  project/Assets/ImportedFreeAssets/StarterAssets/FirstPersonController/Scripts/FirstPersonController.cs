@@ -79,11 +79,12 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
         private float lastGroundUpdateTime = 0.0f;
 
+       
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
-		private CharacterController _controller;
+        private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
@@ -114,6 +115,7 @@ namespace StarterAssets
 		{
             health = maxHealth;
 
+            //decreaseRate = 100f / (2f * 60f);
             _controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
@@ -127,11 +129,15 @@ namespace StarterAssets
 			_fallTimeoutDelta = FallTimeout;
             ISaveable saveable = this;
             saveable.RegisterSaveData();
+
+
+
         }
 
-		private void Update()
+        private void Update()
 		{
-			JumpAndGravity();
+           
+            JumpAndGravity();
 			GroundedCheck();
 			Move();
 			OpenMyBag();
@@ -163,13 +169,27 @@ namespace StarterAssets
             saveable.UnRegisterSaveData();
         }
 
+
+
+
+
         #region "Health"
-        public void TakeDamage(int damage)
+        /*public void TakeDamage(int damage)
         {
             health -= damage;
             Debug.Log(health);
             healthBar.fillAmount = (float)health / 100f;
+        }*/
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            if (healthBar != null)
+            {
+                healthBar.fillAmount = (float)health / maxHealth;
+            }
+            Debug.Log($"Current Health: {health}");
         }
+
         #endregion
         private void GroundedCheck()
 		{
@@ -328,10 +348,13 @@ namespace StarterAssets
             if (data.characterPosDict.ContainsKey(GetDataID().ID))
             {
                 data.characterPosDict[GetDataID().ID] = transform.position;
+				data.intSavedData[GetDataID().ID + "health"] = this.health;
             }
             else
             {
                 data.characterPosDict.Add(GetDataID().ID, transform.position);
+                data.intSavedData.Add(GetDataID().ID + "health", this.health);
+               
             }
         }
         public void LoadData(Data data)
@@ -339,6 +362,8 @@ namespace StarterAssets
             if (data.characterPosDict.ContainsKey(GetDataID().ID))
             {
                 transform.position = data.characterPosDict[GetDataID().ID];
+				this.health = data.intSavedData[GetDataID().ID + "health"];
+                health = maxHealth;
             }
         }
     }

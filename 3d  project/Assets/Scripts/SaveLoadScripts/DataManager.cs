@@ -56,7 +56,7 @@ public class DataManager : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log("save");
+        
         foreach (var saveable in saveableList)
         {
             saveable.GetSaveData(saveData);
