@@ -125,7 +125,9 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-		}
+            ISaveable saveable = this;
+            saveable.RegisterSaveData();
+        }
 
 		private void Update()
 		{
@@ -150,12 +152,13 @@ namespace StarterAssets
 
         private void OnEnable()
         {
-            ISaveable saveable = this;
-            saveable.RegisterSaveData();
+			if (DataManager.instance == null) return;
+
         }
 
         private void OnDisable()
         {
+		
             ISaveable saveable = this;
             saveable.UnRegisterSaveData();
         }
