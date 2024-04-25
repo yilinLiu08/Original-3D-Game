@@ -20,32 +20,42 @@ public class ThrowingTutorial : MonoBehaviour
     public float throwForce;
     public float throwUpwardForce;
 
-   
+    public Animator BlueAnimator;
+    public Animator PurpleAnimator;
+    public Animator YellowAnimator;
+
+
     //private bool[] unlockedObjects;
 
     private int currentObjectIndex;
     private bool readyToThrow;
+    
 
     private void Start()
     {
         readyToThrow = true;
         currentObjectIndex = 0;
+        UpdateAnimation();
 
-        
-       /* unlockedObjects = new bool[objectsToThrow.Length];
-        unlockedObjects[0] = true; 
-        for (int i = 1; i < unlockedObjects.Length; i++)
-        {
-            unlockedObjects[i] = false; 
-        }*/
+
+        /* unlockedObjects = new bool[objectsToThrow.Length];
+         unlockedObjects[0] = true; 
+         for (int i = 1; i < unlockedObjects.Length; i++)
+         {
+             unlockedObjects[i] = false; 
+         }*/
     }
+     
+    
 
     private void Update()
     {
+       
 
         if (Input.GetKeyDown(switchKey))
         {
             currentObjectIndex = (currentObjectIndex + 1) % objectsToThrow.Length;
+            UpdateAnimation();
         }
 
         /*if (Input.GetKeyDown(switchKey))
@@ -61,6 +71,29 @@ public class ThrowingTutorial : MonoBehaviour
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
         {
             Throw();
+        }
+
+        
+    }
+
+    private void UpdateAnimation()
+    {
+        
+        BlueAnimator.SetBool("BlueSelected", false);
+        PurpleAnimator.SetBool("PurpleSelected", false);
+        YellowAnimator.SetBool("YellowSelected", false);
+
+        if (currentObjectIndex == 0)
+        {
+            BlueAnimator.SetBool("BlueSelected", true);
+        }
+        else if (currentObjectIndex == 1)
+        {
+            PurpleAnimator.SetBool("PurpleSelected", true);
+        }
+        else if (currentObjectIndex == 2)
+        {
+            YellowAnimator.SetBool("YellowSelected", true);
         }
     }
 
@@ -90,6 +123,7 @@ public class ThrowingTutorial : MonoBehaviour
         readyToThrow = true;
     }
 
+    
 
     /* public void UnlockObject(int index)
     {
@@ -99,3 +133,9 @@ public class ThrowingTutorial : MonoBehaviour
         }
     }*/
 }
+
+
+
+
+
+

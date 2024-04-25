@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlanetsController : MonoBehaviour
 {
     public PositionController[] controllers; 
+    
 
     private bool allPositionsAndSizesReached = false;
 
