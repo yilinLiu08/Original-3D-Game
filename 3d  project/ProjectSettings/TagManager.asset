@@ -16,6 +16,8 @@ TagManager:
   - BluePlatform
   - PurplePlatform
   - YellowPlatform
+  - Can
+  - FirstAid
   layers:
   - Default
   - TransparentFX

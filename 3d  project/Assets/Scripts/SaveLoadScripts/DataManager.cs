@@ -35,7 +35,7 @@ public class DataManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.lKey.wasPressedThisFrame)  // 注意 'Keyboard' 和 'lKey' 的正确拼写
+        if (Keyboard.current.lKey.wasPressedThisFrame)
         {
             Load();
         }
@@ -44,7 +44,7 @@ public class DataManager : MonoBehaviour
 
     public void RegisterSaveData(ISaveable saveable)
     {
-        if(!saveableList.Contains(saveable))
+        if (!saveableList.Contains(saveable))
         {
             saveableList.Add(saveable);
         }
@@ -56,12 +56,13 @@ public class DataManager : MonoBehaviour
 
     public void Save()
     {
-        foreach(var saveable in saveableList)
+        
+        foreach (var saveable in saveableList)
         {
             saveable.GetSaveData(saveData);
         }
 
-        foreach(var item in saveData.characterPosDict)
+        foreach (var item in saveData.characterPosDict)
         {
             Debug.Log(item.Key + "   " + item.Value);
         }
@@ -76,3 +77,4 @@ public class DataManager : MonoBehaviour
 
     }
 }
+

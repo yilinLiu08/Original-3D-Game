@@ -52,14 +52,14 @@ public class PlayerMovement : MonoBehaviour, ISaveable
         health = maxHealth;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        ISaveable saveable = this;
+        saveable.RegisterSaveData();
         readyToJump = true;
     }
 
     private void OnEnable()
     {
-        ISaveable saveable = this;
-        saveable.RegisterSaveData();
+       
     }
 
     private void OnDisable()
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour, ISaveable
     }
     void OpenMyBag()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             isOpen = !isOpen;
             mybag.SetActive(!isOpen);

@@ -1,33 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;  
 
-public class itemOnWorld : MonoBehaviour
+public class ItemOnWorld : MonoBehaviour
 {
     public Item thisItem;
-    public Inventory PlayerInventory; 
+    public Inventory playerInventory;
+    public GameObject fButtonUI;  
+    private bool isPlayerInRange = false;  
 
-    private void OnTriggerEnter(Collider other) 
+    void Start()
+    {
+        fButtonUI.SetActive(false);  
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            AddNewItem();
-            Destroy(gameObject);
+            isPlayerInRange = true;  
+            fButtonUI.SetActive(true);  
         }
     }
 
-    public void AddNewItem() 
+    private void OnTriggerExit(Collider other)
     {
-        if (!PlayerInventory.itemList.Contains(thisItem)) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            PlayerInventory.itemList.Add(thisItem);
-            //InventoryManager.CreateNewItem(thisItem);
-            print("create new item");
+            isPlayerInRange = false;  
+            fButtonUI.SetActive(false);  
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))  
+        {
+            AddNewItem();
+            Destroy(gameObject);  
+            fButtonUI.SetActive(false);  
+        }
+    }
+
+    public void AddNewItem()
+    {
+        if (!playerInventory.itemList.Contains(thisItem))
+        {
+            thisItem.itemHeld = 1;
+            playerInventory.itemList.Add(thisItem);
+            Debug.Log("create new item");
         }
         else
         {
             thisItem.itemHeld += 1;
-            print("+= 1");
+            Debug.Log("+= 1");
         }
         InventoryManager.RefreshItem();
     }

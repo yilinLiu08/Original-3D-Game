@@ -11,6 +11,7 @@ public class SavePoint : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player")) 
         {
+           
             TriggerAction();
         }
     }

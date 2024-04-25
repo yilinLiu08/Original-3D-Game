@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class starvation : MonoBehaviour
 {
     public float hunger = 100f; 

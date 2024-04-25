@@ -24,11 +24,11 @@ public class Rotation : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        print("Trigger");
+        
 
         if (other.gameObject.CompareTag("YellowBall"))
         {
-            print("Trigger yellow");
+            
             isRotating = !isRotating;
         }
         else if (other.gameObject.CompareTag("BlueBall"))
