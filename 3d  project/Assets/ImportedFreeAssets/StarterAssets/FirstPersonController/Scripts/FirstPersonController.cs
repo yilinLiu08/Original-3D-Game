@@ -61,6 +61,8 @@ namespace StarterAssets
         public int maxHealth = 100;
         public int health;
         public Image healthBar;
+		public bool isInvincible;
+		public float invunerabilityTime;
 
         [Header("Inventory")]
         public GameObject mybag;
@@ -176,20 +178,13 @@ namespace StarterAssets
         #region "Health"
         /*public void TakeDamage(int damage)
         {
+			if (isInvincible)
+				return;
             health -= damage;
             Debug.Log(health);
             healthBar.fillAmount = (float)health / 100f;
-        }*/
-        public void TakeDamage(int damage)
-        {
-            health -= damage;
-            if (healthBar != null)
-            {
-                healthBar.fillAmount = (float)health / maxHealth;
-            }
-            Debug.Log($"Current Health: {health}");
+			StartCoroutine(InvincibilityFrames());
         }
-
         #endregion
         private void GroundedCheck()
 		{
@@ -338,6 +333,14 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
+		IEnumerator InvincibilityFrames()
+		{
+			isInvincible = true;
+			yield return new WaitForSeconds(invunerabilityTime);
+			isInvincible = false;
+		}
+	}
+}
         public DataDefinition GetDataID()
         {
             return GetComponent<DataDefinition>();
