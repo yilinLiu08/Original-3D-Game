@@ -16,7 +16,7 @@ namespace StarterAssets
 	[RequireComponent(typeof(PlayerInput))]
 #endif
 	public class FirstPersonController : MonoBehaviour, ISaveable
-    {
+	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
@@ -57,18 +57,18 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
-        [Header("Health")]
-        public int maxHealth = 100;
-        public int health;
-        public Image healthBar;
+		[Header("Health")]
+		public int maxHealth = 100;
+		public int health;
+		public Image healthBar;
 		public bool isInvincible;
 		public float invunerabilityTime;
 
-        [Header("Inventory")]
-        public GameObject mybag;
-        bool isOpen;
-        // cinemachine
-        private float _cinemachineTargetPitch;
+		[Header("Inventory")]
+		public GameObject mybag;
+		bool isOpen;
+		// cinemachine
+		private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -79,14 +79,14 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
-        private float lastGroundUpdateTime = 0.0f;
+		private float lastGroundUpdateTime = 0.0f;
 
-       
+
 
 #if ENABLE_INPUT_SYSTEM
-        private PlayerInput _playerInput;
+		private PlayerInput _playerInput;
 #endif
-        private CharacterController _controller;
+		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
@@ -96,18 +96,18 @@ namespace StarterAssets
 		{
 			get
 			{
-				#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM
 				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
+#else
 				return false;
-				#endif
+#endif
 			}
 		}
 
 		private void Awake()
 		{
-            health = maxHealth;
-            if (_mainCamera == null)
+			health = maxHealth;
+			if (_mainCamera == null)
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
@@ -115,10 +115,10 @@ namespace StarterAssets
 
 		private void Start()
 		{
-            health = maxHealth;
+			health = maxHealth;
 
-            //decreaseRate = 100f / (2f * 60f);
-            _controller = GetComponent<CharacterController>();
+			//decreaseRate = 100f / (2f * 60f);
+			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
@@ -129,73 +129,69 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-            ISaveable saveable = this;
-            saveable.RegisterSaveData();
+			ISaveable saveable = this;
+			saveable.RegisterSaveData();
 
 
 
-        }
+		}
 
-        private void Update()
+		private void Update()
 		{
-           
-            JumpAndGravity();
+
+			JumpAndGravity();
 			GroundedCheck();
 			Move();
 			OpenMyBag();
-        }
+		}
 
 		private void LateUpdate()
 		{
 			CameraRotation();
 		}
-        void OpenMyBag()
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isOpen = !isOpen;
-                mybag.SetActive(!isOpen);
-            }
-        }
+		void OpenMyBag()
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				isOpen = !isOpen;
+				mybag.SetActive(!isOpen);
+			}
+		}
 
-        private void OnEnable()
-        {
+		private void OnEnable()
+		{
 			if (DataManager.instance == null) return;
 
-        }
+		}
 
-        private void OnDisable()
-        {
-		
-            ISaveable saveable = this;
-            saveable.UnRegisterSaveData();
-        }
+		private void OnDisable()
+		{
 
+			ISaveable saveable = this;
+			saveable.UnRegisterSaveData();
+		}
 
-
-
-
-        #region "Health"
-        /*public void TakeDamage(int damage)
-        {
+		#region "Health"
+		public void TakeDamage(int damage)
+		{
 			if (isInvincible)
 				return;
-            health -= damage;
-            Debug.Log(health);
-            healthBar.fillAmount = (float)health / 100f;
+			health -= damage;
+			Debug.Log(health);
+			healthBar.fillAmount = (float)health / 100f;
 			StartCoroutine(InvincibilityFrames());
-        }
-        #endregion
-        private void GroundedCheck()
+		}
+		#endregion
+		private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-            if (Time.time - lastGroundUpdateTime > _fallTimeoutDelta)
-            {
-                Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-                lastGroundUpdateTime = Time.time;
-            }
-        }
+			if (Time.time - lastGroundUpdateTime > _fallTimeoutDelta)
+			{
+				Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+				lastGroundUpdateTime = Time.time;
+			}
+		}
 
 		private void CameraRotation()
 		{
@@ -204,7 +200,7 @@ namespace StarterAssets
 			{
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
+
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
@@ -314,7 +310,7 @@ namespace StarterAssets
 			}
 		}
 
-        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;
 			if (lfAngle > 360f) lfAngle -= 360f;
@@ -339,39 +335,36 @@ namespace StarterAssets
 			yield return new WaitForSeconds(invunerabilityTime);
 			isInvincible = false;
 		}
-	}
-}
-        public DataDefinition GetDataID()
-        {
-            return GetComponent<DataDefinition>();
-        }
 
-        public void GetSaveData(Data data)
-        {
-            if (data.characterPosDict.ContainsKey(GetDataID().ID))
-            {
-                data.characterPosDict[GetDataID().ID] = transform.position;
+
+		public DataDefinition GetDataID()
+		{
+			return GetComponent<DataDefinition>();
+		}
+
+		public void GetSaveData(Data data)
+		{
+			if (data.characterPosDict.ContainsKey(GetDataID().ID))
+			{
+				data.characterPosDict[GetDataID().ID] = transform.position;
 				data.intSavedData[GetDataID().ID + "health"] = this.health;
-            }
-            else
-            {
-                data.characterPosDict.Add(GetDataID().ID, transform.position);
-                data.intSavedData.Add(GetDataID().ID + "health", this.health);
-               
-            }
-        }
-        public void LoadData(Data data)
-        {
-            if (data.characterPosDict.ContainsKey(GetDataID().ID))
-            {
-                transform.position = data.characterPosDict[GetDataID().ID];
+			}
+			else
+			{
+				data.characterPosDict.Add(GetDataID().ID, transform.position);
+				data.intSavedData.Add(GetDataID().ID + "health", this.health);
+
+			}
+		}
+		public void LoadData(Data data)
+		{
+			if (data.characterPosDict.ContainsKey(GetDataID().ID))
+			{
+				transform.position = data.characterPosDict[GetDataID().ID];
 				this.health = data.intSavedData[GetDataID().ID + "health"];
-                health = maxHealth;
-            }
-        }
-    }
+				health = maxHealth;
+			}
+		}
 
-   
-
-   
+	}
 }
