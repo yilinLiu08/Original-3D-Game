@@ -18,6 +18,7 @@ TagManager:
   - YellowPlatform
   - Can
   - FirstAid
+  - MonsterWaypoint
   layers:
   - Default
   - TransparentFX
