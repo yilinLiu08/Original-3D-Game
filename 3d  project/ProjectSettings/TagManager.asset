@@ -18,6 +18,8 @@ TagManager:
   - YellowPlatform
   - Can
   - FirstAid
+  - Key
+  - liquor
   layers:
   - Default
   - TransparentFX

@@ -223,6 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af25f8c274618b0438c4e7a309318352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotItem: {fileID: 11400000, guid: d5e890d1fcf38e14bb93f21f93b9bf1a, type: 2}
+  slotItem: {fileID: 11400000, guid: b75e33bcc50f23c46a171a39e1580edb, type: 2}
   slotImage: {fileID: 6574831059586411647}
   slotNum: {fileID: 3374014572885715696}

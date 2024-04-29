@@ -16,3 +16,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 6e528756e1ddc1a47965a12970c03ffa, type: 3}
   itemHeld: 1
   itemInfor: Health Recover
+  prefabIndex: 1

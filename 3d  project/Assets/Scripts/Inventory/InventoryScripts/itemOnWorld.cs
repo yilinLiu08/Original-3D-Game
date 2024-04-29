@@ -8,7 +8,8 @@ public class ItemOnWorld : MonoBehaviour
     public Item thisItem;
     public Inventory playerInventory;
     public GameObject fButtonUI;  
-    private bool isPlayerInRange = false;  
+    private bool isPlayerInRange = false;
+    public AudioSource PickUp;
 
     void Start()
     {
@@ -57,5 +58,6 @@ public class ItemOnWorld : MonoBehaviour
             Debug.Log("+= 1");
         }
         InventoryManager.RefreshItem();
+        PickUp.Play();
     }
 }

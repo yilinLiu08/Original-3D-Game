@@ -10,13 +10,15 @@ public class InventoryManager : MonoBehaviour
 
     public Inventory myBag;
     public GameObject slotGrid;
-    public Slot slotPrefab;
+    // 使用数组代替单一的Slot预制件
+    public Slot[] slotPrefabs;
     public TextMeshProUGUI itemInformation;
 
     void Awake()
     {
         if (instance != null)
             Destroy(this);
+
         instance = this;
     }
 
@@ -26,35 +28,35 @@ public class InventoryManager : MonoBehaviour
         instance.itemInformation.text = "";
     }
 
-    public static void UpdateItemInfo(string itemDescriptation)
+    public static void UpdateItemInfo(string itemDescription)
     {
-        instance.itemInformation.text = itemDescriptation;
+        instance.itemInformation.text = itemDescription;
     }
-
 
     public static void CreateNewItem(Item item)
     {
-        Slot newItem = Instantiate(instance.slotPrefab, instance.slotGrid.transform.position, Quaternion.identity);
+        // 根据物品类型索引来选择正确的槽位预制件
+        int index = Mathf.Clamp(item.prefabIndex, 0, instance.slotPrefabs.Length - 1);
+        Slot newItem = Instantiate(instance.slotPrefabs[index], instance.slotGrid.transform.position, Quaternion.identity);
         newItem.gameObject.transform.SetParent(instance.slotGrid.transform);
         newItem.slotItem = item;
         newItem.slotImage.sprite = item.itemImage;
         newItem.slotNum.text = item.itemHeld.ToString();
-        print(newItem.slotImage.sprite.name);
-
-
+        
     }
 
     public static void RefreshItem()
     {
-        for(int i = 0;i< instance.slotGrid.transform.childCount;i++)
+        for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
         {
             if (instance.slotGrid.transform.childCount == 0)
                 break;
+
             Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
         }
-        for(int i = 0; i < instance.myBag.itemList.Count; i++)
+        foreach (var item in instance.myBag.itemList)
         {
-            CreateNewItem(instance.myBag.itemList[i]);
+            CreateNewItem(item);
         }
-    }   
+    }
 }

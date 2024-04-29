@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlanetsController : MonoBehaviour
 {
-    public PositionController[] controllers; 
-    
+    public PositionController[] controllers;
+    public GameObject targetGameObject; 
 
     private bool allPositionsAndSizesReached = false;
 
@@ -22,16 +22,18 @@ public class PlanetsController : MonoBehaviour
                 {
                     
                     allPositionsAndSizesReached = false;
+                    targetGameObject.SetActive(false);
                 }
                 return;
             }
         }
 
-        
         if (!allPositionsAndSizesReached)
         {
+            
             Debug.Log("All planets true!");
             allPositionsAndSizesReached = true;
+            targetGameObject.SetActive(true); 
         }
     }
 }

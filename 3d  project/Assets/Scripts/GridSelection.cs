@@ -11,6 +11,9 @@ public class GridSelection : MonoBehaviour
     public InventoryManager inventoryManager;
     public starvation HungerController;
 
+    public AudioSource eating;
+    public AudioSource drinking;
+
     void Start()
     {
         foreach (Transform child in gridLayoutGroup.transform)
@@ -83,19 +86,26 @@ public class GridSelection : MonoBehaviour
         if (selectedItem.CompareTag("Can"))
         {
             RestoreHunger();
+            eating.Play();
         }
         else if (selectedItem.CompareTag("FirstAid"))
         {
             Debug.LogError("Recover blood");
         }
+        else if (selectedItem.CompareTag("liquor"))
+        {
+            drinking.Play();
+            HungerController.PauseHungerDecrease(60f);
+        }
 
-       
+
+
         item.itemHeld--;
         if (item.itemHeld <= 0)
         {
             inventoryManager.myBag.itemList.Remove(item);
             Destroy(selectedItem.gameObject);
-            InventoryManager.RefreshItem();  // È·±£Ë¢ÐÂUI
+            InventoryManager.RefreshItem(); 
         }
 
 
@@ -108,4 +118,6 @@ public class GridSelection : MonoBehaviour
         HungerController.hunger = Mathf.Min(HungerController.hunger, 100f);
         HungerController.HungerBar.fillAmount = HungerController.hunger / 100f;
     }
+
+    
 }
