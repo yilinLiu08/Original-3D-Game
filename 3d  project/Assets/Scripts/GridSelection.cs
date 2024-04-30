@@ -11,8 +11,12 @@ public class GridSelection : MonoBehaviour
     public InventoryManager inventoryManager;
     public starvation HungerController;
 
+
     public AudioSource eating;
     public AudioSource drinking;
+    public AudioSource RecoverSound;
+
+    public int recoveryAmount = 30;
 
     void Start()
     {
@@ -86,11 +90,13 @@ public class GridSelection : MonoBehaviour
         if (selectedItem.CompareTag("Can"))
         {
             RestoreHunger();
+            
             eating.Play();
         }
         else if (selectedItem.CompareTag("FirstAid"))
         {
-            Debug.LogError("Recover blood");
+            Recover();
+            RecoverSound.Play();
         }
         else if (selectedItem.CompareTag("liquor"))
         {
@@ -119,5 +125,15 @@ public class GridSelection : MonoBehaviour
         HungerController.HungerBar.fillAmount = HungerController.hunger / 100f;
     }
 
-    
+    void Recover()
+    {
+        StarterAssets.FirstPersonController playerController = FindObjectOfType<StarterAssets.FirstPersonController>(); 
+        if (playerController != null)
+        {
+            playerController.TakeDamage(-recoveryAmount);
+            Debug.Log("Player has recovered " + recoveryAmount + " health points.");
+        }
+    }
+
+
 }

@@ -15,7 +15,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
 #endif
-	public class FirstPersonController : MonoBehaviour//, ISaveable
+	public class FirstPersonController : MonoBehaviour, ISaveable
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
@@ -129,8 +129,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-			//ISaveable saveable = this;
-			//saveable.RegisterSaveData();
+			ISaveable saveable = this;
+			saveable.RegisterSaveData();
 
 
 
@@ -164,12 +164,12 @@ namespace StarterAssets
 
 		}
 
-		/*private void OnDisable()
+		private void OnDisable()
 		{
 
 			ISaveable saveable = this;
 			saveable.UnRegisterSaveData();
-		}*/
+		}
 
 		#region "Health"
 		public void TakeDamage(int damage)
@@ -337,7 +337,7 @@ namespace StarterAssets
 		}
 
 
-		/*public DataDefinition GetDataID()
+		public DataDefinition GetDataID()
 		{
 			return GetComponent<DataDefinition>();
 		}
@@ -364,7 +364,7 @@ namespace StarterAssets
 				this.health = data.intSavedData[GetDataID().ID + "health"];
 				health = maxHealth;
 			}
-		}*/
+		}
 
 	}
 }

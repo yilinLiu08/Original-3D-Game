@@ -4,7 +4,7 @@ public class unlockPurple : MonoBehaviour
 {
     public ThrowingTutorial throwingTutorialScript;
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         
         if (other.CompareTag("Player"))
@@ -15,5 +15,5 @@ public class unlockPurple : MonoBehaviour
             Destroy(gameObject);
 
         }
-    }*/
+    }
 }
