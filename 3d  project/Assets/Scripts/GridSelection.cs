@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using StarterAssets;
 
 public class GridSelection : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GridSelection : MonoBehaviour
 
     public AudioSource eating;
     public AudioSource drinking;
+
+    [SerializeField] FirstPersonController firstPersonController;
 
     void Start()
     {

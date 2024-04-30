@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -194,4 +194,4 @@ public class PlayerMovement : MonoBehaviour, ISaveable
         healthBar.fillAmount = (float) health / 100f;
     }
     #endregion
-}*/
+}
