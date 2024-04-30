@@ -111,7 +111,7 @@ public class MiniBossController : MonoBehaviour
         if (bossStates == BossStates.stunState || bossStates == BossStates.rainAttackState)
             return;
         stunMeter -= damage;
-        Debug.Log("stun damage");
+        //Debug.Log("stun damage");
         if (stunMeter <= 0)
         {
             ChangeState(BossStates.stunState);
@@ -131,9 +131,9 @@ public class MiniBossController : MonoBehaviour
 
     private void ChangeState(BossStates newState)
     {
+        StopAllCoroutines();
         Debug.Log("StateCalled");
         bossStates = newState;
-        StopCoroutine(UnstunTimer());
         miniBossAttack.StopAttackEarly();
         switch(newState)
         {
@@ -145,9 +145,9 @@ public class MiniBossController : MonoBehaviour
                 onStun();
                 break;
             case BossStates.attackState:
+                animator.SetBool("isMoving", true);
                 meshAgent.isStopped = false;
                 stunMeter = maxStunHealth;
-                animator.SetBool("isMoving", true);
                 //animator.SetBool("isAttack1", true);
                 break;
             case BossStates.rainAttackState:
@@ -160,6 +160,7 @@ public class MiniBossController : MonoBehaviour
             case BossStates.dieState:
                 animator.SetTrigger("die");
                 meshAgent.isStopped = true;
+                Destroy(gameObject, 6f);
                 break;
             default:
                 break;
@@ -169,6 +170,7 @@ public class MiniBossController : MonoBehaviour
     IEnumerator UnstunTimer()
     {
        yield return new WaitForSeconds(unstunTimer);
+        Debug.Log("Code after yield is called");
         ChangeState(BossStates.rainAttackState);
     }
 

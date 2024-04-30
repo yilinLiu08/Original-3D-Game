@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using StarterAssets;
 
 public class GridSelection : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GridSelection : MonoBehaviour
     public AudioSource RecoverSound;
 
     public int recoveryAmount = 30;
+
+    [SerializeField] FirstPersonController firstPersonController;
 
     void Start()
     {
