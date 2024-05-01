@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Monster1Controller : MonoBehaviour
 {   
@@ -10,11 +11,15 @@ public class Monster1Controller : MonoBehaviour
     public int maxHealth = 50;
     public int health;
     public int damage;
+    public Image healthBar;
     [SerializeField] FirstPersonController playerHealth;
 
+    public AudioSource die;
+    public AudioSource damageAudio;
     Rigidbody rb;
     Animator animator;
     NavMeshAgent meshAgent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,10 +49,13 @@ public class Monster1Controller : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        damageAudio.Play();
         health -= damage;
+        healthBar.fillAmount = health / 100f;
         if (health < 0)
         {
             animator.SetTrigger("die");
+            die.Play();
             Destroy(gameObject, 3f);
         }
     }
