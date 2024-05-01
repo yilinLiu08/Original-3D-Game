@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     public Inventory myBag;
     public GameObject slotGrid;
-    // 使用数组代替单一的Slot预制件
+    
     public Slot[] slotPrefabs;
     public TextMeshProUGUI itemInformation;
 
@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
 
     public static void CreateNewItem(Item item)
     {
-        // 根据物品类型索引来选择正确的槽位预制件
+        
         int index = Mathf.Clamp(item.prefabIndex, 0, instance.slotPrefabs.Length - 1);
         Slot newItem = Instantiate(instance.slotPrefabs[index], instance.slotGrid.transform.position, Quaternion.identity);
         newItem.gameObject.transform.SetParent(instance.slotGrid.transform);

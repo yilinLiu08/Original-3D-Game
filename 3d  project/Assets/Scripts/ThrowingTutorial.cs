@@ -25,56 +25,49 @@ public class ThrowingTutorial : MonoBehaviour
     public Animator YellowAnimator;
 
 
-    //private bool[] unlockedObjects;
+    public bool[] unlockedObjects;
 
     private int currentObjectIndex;
     private bool readyToThrow;
-    
+    public AudioSource throwAudio;
 
-    private void Start()
+
+    public void Start()
     {
         readyToThrow = true;
         currentObjectIndex = 0;
         UpdateAnimation();
 
 
-        /* unlockedObjects = new bool[objectsToThrow.Length];
+         unlockedObjects = new bool[objectsToThrow.Length];
          unlockedObjects[0] = true; 
          for (int i = 1; i < unlockedObjects.Length; i++)
          {
              unlockedObjects[i] = false; 
-         }*/
+         }
     }
-     
-    
 
-    private void Update()
+
+
+    public void Update()
     {
-       
-
         if (Input.GetKeyDown(switchKey))
         {
-            currentObjectIndex = (currentObjectIndex + 1) % objectsToThrow.Length;
-            UpdateAnimation();
-        }
-
-        /*if (Input.GetKeyDown(switchKey))
-        {
-            
             do
             {
                 currentObjectIndex = (currentObjectIndex + 1) % objectsToThrow.Length;
             }
-            while (!unlockedObjects[currentObjectIndex]); 
-        }*/
-
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
-        {
-            Throw();
+            while (!unlockedObjects[currentObjectIndex]);
+            UpdateAnimation();
         }
 
-        
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0 && unlockedObjects[currentObjectIndex])
+        {
+            Throw();
+            throwAudio.Play();
+        }
     }
+
 
     private void UpdateAnimation()
     {
@@ -125,13 +118,13 @@ public class ThrowingTutorial : MonoBehaviour
 
     
 
-    /* public void UnlockObject(int index)
+     public void UnlockObject(int index)
     {
         if (index >= 0 && index < unlockedObjects.Length)
         {
             unlockedObjects[index] = true;
         }
-    }*/
+    }
 }
 
 

@@ -15,7 +15,7 @@ public class labLevelPortal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("LabScene");
+            SceneManager.LoadScene("SampleScene");
         }
     }
 

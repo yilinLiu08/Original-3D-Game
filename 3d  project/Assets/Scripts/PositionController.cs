@@ -9,6 +9,7 @@ public class PositionController : MonoBehaviour
     private bool positionReached = false;
     private bool sizeReached = false;
     public bool sizeAndPositionReached = false;  
+    public AudioSource trigger;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class PositionController : MonoBehaviour
             if (!positionReached)
             {
                 Debug.Log("position reached!");
+                
                 positionReached = true;
             }
         }
@@ -49,6 +51,8 @@ public class PositionController : MonoBehaviour
             if (!sizeReached)
             {
                 Debug.Log("size reached!");
+                trigger.Play();
+
                 sizeReached = true;
             }
         }
@@ -70,6 +74,7 @@ public class PositionController : MonoBehaviour
             if (!sizeAndPositionReached) 
             {
                 Debug.Log("Both size and position reached!");
+                
                 sizeAndPositionReached = true;
             }
         }
@@ -82,6 +87,8 @@ public class PositionController : MonoBehaviour
             }
         }
     }
+
+    
 }
 
 

@@ -21,6 +21,7 @@ TagManager:
   - MonsterWaypoint
   - Key
   - liquor
+  - notes
   layers:
   - Default
   - TransparentFX

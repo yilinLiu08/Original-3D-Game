@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
+
+    public AudioSource openDoor;
     private Animator rubyAnimator;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (collision.gameObject.tag == "BlueBall" )
         {
+            openDoor.Play();
             rubyAnimator.SetTrigger("OpenDoor");
             Destroy(gameObject,2f);
         }

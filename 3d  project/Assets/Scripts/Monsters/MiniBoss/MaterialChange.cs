@@ -5,18 +5,20 @@ public class MaterialChange : MonoBehaviour
     public Material BlueMaterial;
     public Material PurpleMaterial;
     public Material DefaultMaterial;
+    public AudioSource light;
 
     public bool isPurple;
     public bool canChange;
 
     private void OnCollisionEnter(Collision collision)
     {
+        light.Play();
         if (!canChange)
             return;
         
         Renderer renderer = GetComponent<Renderer>();
-
         
+
         if (collision.gameObject.tag == "BlueBall" && renderer != null && BlueMaterial != null)
         {
             renderer.material = BlueMaterial;
