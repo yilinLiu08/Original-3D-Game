@@ -81,12 +81,14 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
 		private float lastGroundUpdateTime = 0.0f;
 
+        public AudioSource hurted;
+
 
 
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
 #endif
-		private CharacterController _controller;
+        private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
@@ -174,7 +176,9 @@ namespace StarterAssets
 		#region "Health"
 		public void TakeDamage(int damage)
 		{
-			if (isInvincible)
+			hurted.Play();
+
+            if (isInvincible)
 				return;
 			health -= damage;
 			Debug.Log(health);

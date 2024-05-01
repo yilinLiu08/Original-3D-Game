@@ -16,4 +16,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 64b1161f0f451ef4994755acdd219fc6, type: 3}
   itemHeld: 1
   itemInfor: It can use the elevator
-  prefabIndex: 3
+  prefabIndex: 2

@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class ToChurch : MonoBehaviour
 {
-    public Transform teleportTarget; 
+    public Transform teleportTarget;
+    public Transform playerTransform;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            collision.transform.position = teleportTarget.position;
+
+            playerTransform.position = teleportTarget.position;
+            print("yes");
+
         }
     }
 }

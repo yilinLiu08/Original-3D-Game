@@ -3,9 +3,17 @@ using UnityEngine;
 public class PlanetsController : MonoBehaviour
 {
     public PositionController[] controllers;
-    public GameObject targetGameObject; 
+    public GameObject targetGameObject;
+    public AudioSource trigger;
 
     private bool allPositionsAndSizesReached = false;
+
+    public CameraRotateToPoint cameraScript;
+
+    void Start()
+    {
+        cameraScript.enabled = false; 
+    }
 
     void Update()
     {
@@ -20,7 +28,6 @@ public class PlanetsController : MonoBehaviour
             {
                 if (allPositionsAndSizesReached)
                 {
-                    
                     allPositionsAndSizesReached = false;
                     targetGameObject.SetActive(false);
                 }
@@ -30,10 +37,12 @@ public class PlanetsController : MonoBehaviour
 
         if (!allPositionsAndSizesReached)
         {
-            
+            cameraScript.enabled = true; 
+            cameraScript.ActivateCameraMovement();
             Debug.Log("All planets true!");
+            trigger.Play();
             allPositionsAndSizesReached = true;
-            targetGameObject.SetActive(true); 
+            targetGameObject.SetActive(true);
         }
     }
 }

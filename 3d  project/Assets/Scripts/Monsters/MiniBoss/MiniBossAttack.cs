@@ -22,6 +22,7 @@ public class MiniBossAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("HitPlayer");
+            
             playerHealth.TakeDamage(damage);
         }
     }

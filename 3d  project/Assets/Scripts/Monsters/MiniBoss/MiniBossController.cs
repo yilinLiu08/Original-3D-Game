@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro;
 
 public class MiniBossController : MonoBehaviour
 {
     private int stunMeter = 5;
     public int maxStunHealth = 5;
     public int trueHealth = 3;
+    public Image healthBar;
 
     public float unstunTimer = 8f;
     public float rainStopTimer = 15f;
@@ -27,6 +30,10 @@ public class MiniBossController : MonoBehaviour
     public MiniBossAttack miniBossAttack;
 
     BossStates bossStates;
+
+    public AudioSource rain;
+    public AudioSource collide;
+    public CameraShake cameraShake;
 
     enum BossStates
     {
@@ -51,7 +58,9 @@ public class MiniBossController : MonoBehaviour
         {
             if(clip.name == "Zombie Attack")
             {
-                attackTime = clip.length;
+                attackTime = clip.length; 
+                
+                collide.Play();
             }
         }
         if(attackTime <= 0f)
@@ -123,6 +132,7 @@ public class MiniBossController : MonoBehaviour
         trueHealth -= damage;
         ChangeState(BossStates.attackState);
         Debug.Log("trueDamage");
+        healthBar.fillAmount = trueHealth / 100f;
         if (trueHealth <= 0)
         {
             ChangeState(BossStates.dieState);
@@ -153,6 +163,9 @@ public class MiniBossController : MonoBehaviour
             case BossStates.rainAttackState:
                 meshAgent.isStopped= true;
                 animator.SetBool("isMoving", false);
+                cameraShake.EnableShaking(); 
+                cameraShake.TriggerShake();
+                rain.Play();
                 animator.SetTrigger("rainAttack");
                 rainController.SetActive(true);
                 StartCoroutine(RainStopTimer());

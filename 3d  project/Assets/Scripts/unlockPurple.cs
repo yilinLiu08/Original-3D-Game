@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class unlockPurple : MonoBehaviour
 {
@@ -16,4 +16,4 @@ public class unlockPurple : MonoBehaviour
 
         }
     }
-}
+}*/

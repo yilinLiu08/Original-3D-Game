@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using StarterAssets;
+using UnityEngine.UI;
 
 public class GridSelection : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GridSelection : MonoBehaviour
     public int recoveryAmount = 30;
 
     [SerializeField] FirstPersonController firstPersonController;
+
+    public GameObject uiImage;
 
     void Start()
     {
@@ -105,6 +108,16 @@ public class GridSelection : MonoBehaviour
         {
             drinking.Play();
             HungerController.PauseHungerDecrease(60f);
+        }
+        else if (selectedItem.CompareTag("notes"))
+        {
+            uiImage.SetActive(true);
+            return;
+        }
+        else if (selectedItem.CompareTag("Key"))
+        {
+           
+            return; 
         }
 
 
