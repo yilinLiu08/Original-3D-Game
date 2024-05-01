@@ -23,7 +23,7 @@ public class ElevatorFirst : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))
         {

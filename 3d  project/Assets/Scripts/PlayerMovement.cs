@@ -169,21 +169,21 @@ public class PlayerMovement : MonoBehaviour, ISaveable
 
     public void GetSaveData(Data data)
     {
-        if(data.characterPosDict.ContainsKey(GetDataID().ID))
-        {
-            data.characterPosDict[GetDataID().ID] = transform.position;
-        }
-        else
-        {
-            data.characterPosDict.Add(GetDataID().ID, transform.position); 
-        }
+        //if(data.characterPosDict.ContainsKey(GetDataID().ID))
+        //{
+        //    data.characterPosDict[GetDataID().ID] = transform.position;
+        //}
+        //else
+        //{
+        //    data.characterPosDict.Add(GetDataID().ID, transform.position); 
+        //}
     }
     public void LoadData(Data data)
     {
-        if (data.characterPosDict.ContainsKey(GetDataID().ID))
-        {
-            transform.position = data.characterPosDict[GetDataID().ID];
-        }
+        //if (data.characterPosDict.ContainsKey(GetDataID().ID))
+        //{
+        //    transform.position = data.characterPosDict[GetDataID().ID];
+        //}
     }
 
     #region "Health"

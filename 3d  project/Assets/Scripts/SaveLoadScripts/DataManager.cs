@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using static UnityEditor.Progress;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager instance;
+    public static DataManager Instance { private set; get; }
 
     public VoidEventSO saveDataEvent;
 
@@ -15,13 +19,20 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(this.gameObject);
 
+        //saveData = LoadData("Save");
+        //if (saveData == null)
+        //{
+        //    saveData = new Data();
+        //}
         saveData = new Data();
-
     }
     private void OnEnable()
     {
@@ -56,16 +67,17 @@ public class DataManager : MonoBehaviour
 
     public void Save()
     {
-        
+
         foreach (var saveable in saveableList)
         {
             saveable.GetSaveData(saveData);
         }
-
-        foreach (var item in saveData.characterPosDict)
-        {
-            Debug.Log(item.Key + "   " + item.Value);
-        }
+        SaveData(saveData, "Save");
+        //foreach (var item in saveData.characterPosDict)
+        //{
+        //    Debug.Log(item.Key + "   " + item.Value);
+        //}
+        Debug.Log("±£´æ³É¹¦");
     }
 
     public void Load()
@@ -75,6 +87,53 @@ public class DataManager : MonoBehaviour
             saveable.LoadData(saveData);
         }
 
+    }
+
+    private string GetPath(string path)
+    {
+        if (Application.isEditor)
+        {
+            return Application.streamingAssetsPath + "/" + path + ".data";
+        }
+
+        return Application.persistentDataPath + "/" + path + ".data";
+    }
+
+    private Data LoadData(string path)
+    {
+        Data value = null;
+        string path2 = GetPath(path);
+        if (File.Exists(path2))
+        {
+            FileStream fileStream = new FileStream(path2, FileMode.Open);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            try
+            {
+                value = (Data)binaryFormatter.Deserialize(fileStream);
+            }
+            catch (Exception)
+            {
+                fileStream.Close();
+                throw;
+            }
+            fileStream.Close();
+        }
+        return value;
+    }
+
+    private void SaveData(Data data, string path)
+    {
+        string path2 = GetPath(path);
+        string directoryName = Path.GetDirectoryName(path2);
+        if (!Directory.Exists(directoryName))
+        {
+            Directory.CreateDirectory(directoryName);
+        }
+        FileStream fileStream = new FileStream(path2, FileMode.OpenOrCreate);
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        binaryFormatter.Serialize(fileStream, data);
+        fileStream.Flush();
+        fileStream.Close();
     }
 }
 

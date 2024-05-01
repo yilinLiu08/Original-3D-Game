@@ -6,12 +6,12 @@ public interface ISaveable
 {
     DataDefinition GetDataID();
 
-    void RegisterSaveData() => DataManager.instance.RegisterSaveData(this);
+    void RegisterSaveData() => DataManager.Instance.RegisterSaveData(this);
 
 
 
 
-    void UnRegisterSaveData() => DataManager.instance.UnRegisterSaveData(this);
+    void UnRegisterSaveData() => DataManager.Instance.UnRegisterSaveData(this);
 
     void GetSaveData(Data data);
 
