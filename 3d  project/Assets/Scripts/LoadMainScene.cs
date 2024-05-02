@@ -10,7 +10,7 @@ public class LoadMainScene : MonoBehaviour
         if (Input.anyKeyDown)
         {
             
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("StartingScene");
         }
     }
 }

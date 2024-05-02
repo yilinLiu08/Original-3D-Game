@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using StarterAssets;
-using UnityEngine.UI;
 
 public class GridSelection : MonoBehaviour
 {

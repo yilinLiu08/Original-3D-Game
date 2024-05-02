@@ -5,7 +5,7 @@ public class MaterialChange : MonoBehaviour
     public Material BlueMaterial;
     public Material PurpleMaterial;
     public Material DefaultMaterial;
-    public AudioSource light;
+    public new AudioSource light;
 
     public bool isPurple;
     public bool canChange;
