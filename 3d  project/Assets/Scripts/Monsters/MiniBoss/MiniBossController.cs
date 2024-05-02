@@ -33,7 +33,7 @@ public class MiniBossController : MonoBehaviour
 
     public AudioSource rain;
     public AudioSource collide;
-    public CameraShake cameraShake;
+    //public CameraShake cameraShake;
 
     enum BossStates
     {
@@ -163,8 +163,8 @@ public class MiniBossController : MonoBehaviour
             case BossStates.rainAttackState:
                 meshAgent.isStopped= true;
                 animator.SetBool("isMoving", false);
-                cameraShake.EnableShaking(); 
-                cameraShake.TriggerShake();
+                //cameraShake.EnableShaking(); 
+                //cameraShake.TriggerShake();
                 rain.Play();
                 animator.SetTrigger("rainAttack");
                 rainController.SetActive(true);

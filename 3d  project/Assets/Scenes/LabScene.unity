@@ -13024,6 +13024,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 622629291394379168, guid: 6536ca114d3f69c468aba62643e21569,
+        type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 758222798979740804, guid: 6536ca114d3f69c468aba62643e21569,
         type: 3}
       propertyPath: m_Type

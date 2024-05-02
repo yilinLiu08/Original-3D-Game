@@ -29,7 +29,8 @@ public class ThrowingTutorial : MonoBehaviour
 
     private int currentObjectIndex;
     private bool readyToThrow;
-    
+    public AudioSource throwAudio;
+
 
     public void Start()
     {
@@ -62,6 +63,7 @@ public class ThrowingTutorial : MonoBehaviour
 
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0 && unlockedObjects[currentObjectIndex])
         {
+            throwAudio.Play();
             Throw();
         }
     }

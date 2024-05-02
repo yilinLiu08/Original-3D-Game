@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 using static UnityEditor.PlayerSettings;
 
 
@@ -86,6 +87,12 @@ namespace StarterAssets
         private float lastGroundUpdateTime = 0.0f;
 
         public AudioSource hurted;
+        public GameObject deathScreen;
+        public Volume globalVolume;
+
+        private bool isDead = false;
+        public starvation hungerScript;
+
 
 
 
@@ -151,16 +158,25 @@ namespace StarterAssets
 
         private void Update()
         {
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
-            OpenMyBag();
+            if (!isDead)
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+                OpenMyBag();
+            }
+            else if (isDead && health > 0)
+            {
+                Revive();
+            }
         }
 
         private void LateUpdate()
         {
-            CameraRotation();
+            if (!isDead)
+            {
+                CameraRotation();
+            }
         }
         void OpenMyBag()
         {
@@ -187,15 +203,45 @@ namespace StarterAssets
         #region "Health"
         public void TakeDamage(int damage)
         {
-            hurted.Play();
+            if (isDead) return;  
 
-            if (isInvincible)
-                return;
             health -= damage;
-            Debug.Log(health);
-            healthBar.fillAmount = (float)health / 100f;
-            StartCoroutine(InvincibilityFrames());
+            healthBar.fillAmount = (float)health / maxHealth;
+
+            if (health <= 0)
+            {
+                Die();
+            }
+            
         }
+
+
+        void Die()
+        {
+            if (isDead) return;  
+
+            isDead = true;
+            deathScreen.SetActive(true);  
+            StartCoroutine(FadeInVolumeWeight(2.0f));
+            StartCoroutine(RotateCameraOnZ(90, 2.0f));
+            hungerScript.stopHungerDecrease();
+            _input.move = Vector2.zero;
+            _input.sprint = false;
+            _input.jump = false;
+
+            
+        }
+        void Revive()
+        {
+            isDead = false;
+            deathScreen.SetActive(false);
+            globalVolume.weight = 0;
+            hungerScript.continueHungerDecrease();
+            hungerScript.hunger = Mathf.Min(100, hungerScript.hunger + 30); 
+            hungerScript.HungerBar.fillAmount = hungerScript.hunger / 100f;
+            CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+
         #endregion
         private void GroundedCheck()
         {
@@ -389,5 +435,31 @@ namespace StarterAssets
                 }
             }
         }
+
+        IEnumerator FadeInVolumeWeight(float duration)
+        {
+            float currentTime = 0;
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                globalVolume.weight = Mathf.Lerp(0, 1, currentTime / duration);
+                yield return null;
+            }
+            globalVolume.weight = 1; 
+        }
+        IEnumerator RotateCameraOnZ(float targetZRotation, float duration)
+        {
+            float currentTime = 0f;
+            Quaternion originalRotation = CinemachineCameraTarget.transform.localRotation;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetZRotation);
+
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                CinemachineCameraTarget.transform.localRotation = Quaternion.Lerp(originalRotation, targetRotation, currentTime / duration);
+                yield return null;
+            }
+        }
+
     }
 }
