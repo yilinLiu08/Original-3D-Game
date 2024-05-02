@@ -87,11 +87,13 @@ namespace StarterAssets
         private float lastGroundUpdateTime = 0.0f;
 
         public AudioSource hurted;
+        public AudioSource death;
         public GameObject deathScreen;
         public Volume globalVolume;
 
         private bool isDead = false;
         public starvation hungerScript;
+
 
 
 
@@ -210,6 +212,7 @@ namespace StarterAssets
 
             if (health <= 0)
             {
+                death.Play();
                 Die();
             }
             
