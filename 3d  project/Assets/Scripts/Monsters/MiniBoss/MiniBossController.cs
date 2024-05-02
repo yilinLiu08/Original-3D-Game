@@ -72,6 +72,7 @@ public class MiniBossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.fillAmount = trueHealth / 100f;
         #region "Switch States"
         switch (bossStates)
         {
@@ -120,6 +121,7 @@ public class MiniBossController : MonoBehaviour
             return;
         stunMeter -= damage;
         //Debug.Log("stun damage");
+        healthBar.fillAmount = trueHealth / 100f;
         if (stunMeter <= 0)
         {
             ChangeState(BossStates.stunState);
