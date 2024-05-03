@@ -29,6 +29,11 @@ public class Monster1Controller : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -52,7 +57,7 @@ public class Monster1Controller : MonoBehaviour
         damageAudio.Play();
         health -= damage;
         healthBar.fillAmount = health / 100f;
-        if (health < 0)
+        if (health <= 0)
         {
             animator.SetTrigger("die");
             die.Play();
