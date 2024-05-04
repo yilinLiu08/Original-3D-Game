@@ -24,16 +24,16 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - whatIsGround
   - Water
   - UI
   - post
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - whatIsPlayer
+  - whatIsBoat
+  - Elements
+  - Monster
+  - Lighting
+  - PlayerOutOfBounds
   - 
   - 
   - 
