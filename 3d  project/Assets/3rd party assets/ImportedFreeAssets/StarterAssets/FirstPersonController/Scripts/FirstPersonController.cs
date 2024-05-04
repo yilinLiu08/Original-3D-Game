@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting.Antlr3.Runtime;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
-using static UnityEditor.PlayerSettings;
 
 
 #if ENABLE_INPUT_SYSTEM

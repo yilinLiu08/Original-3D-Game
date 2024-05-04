@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
-using static UnityEditor.Progress;
 
 public class DataManager : MonoBehaviour
 {
